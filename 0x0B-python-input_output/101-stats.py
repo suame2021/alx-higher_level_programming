@@ -49,4 +49,4 @@ try:
     print_info()
 except KeyboardInterrupt:
     print_info()
-    raiseclear
+    raise
