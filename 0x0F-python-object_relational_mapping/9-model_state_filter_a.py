@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Lists all State objects from the database
+lists all State objects that contain the letter a from the database
 """
 from sys import argv
 from model_state import Base, State
@@ -13,6 +13,6 @@ if __name__ == "__main__":
                            pool_pre_ping=True)
     Session = sessionmaker(bind=engine)
     session = Session()
-    for state in session.query(State):
+    for state in session.query(State).filter(State.name.like('%a%')):
         print("{}: {}".format(state.id, state.name))
     session.close()

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Lists all State objects from the database
+Changes the name of a State object from the database
 """
 from sys import argv
 from model_state import Base, State
@@ -13,6 +13,7 @@ if __name__ == "__main__":
                            pool_pre_ping=True)
     Session = sessionmaker(bind=engine)
     session = Session()
-    for state in session.query(State):
-        print("{}: {}".format(state.id, state.name))
+    state = session.query(State).filter_by(id="2").first()
+    state.name = "New Mexico"
+    session.commit()
     session.close()
